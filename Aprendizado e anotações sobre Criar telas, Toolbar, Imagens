@@ -1,0 +1,66 @@
+Adicionando as imagems ao android studio, não é necessario criar a pasta assets
+
+Copie as imagens e va até a pasta "res" > clique no "drawable" e aperte CTRL + V, ele vai mostrar uma caixa informando em qual drawable quer por, escolha o primeiro e de OK e depois de "Refactor" e PRONTO !!!
+
+
+
+Para alterar o Titulo na Actions BAR 
+va na pasta "res" > "values" > "strings.xml" o titulo esta aqui é só alterar, lembrando quando alterar voce precisa fechar o emulador e abrir novamente para ver a mudança !!
+
+criando uma nova tela para que quando clicar em alguma imagem seja direcionado para ela
+vá na pasta "java" > clique com o botão direito no "com.example.bancomr" > "new" > "Activity" > "Empty Activity", de um nome pra tela e de finish
+isso é feito para quando voce precisar navegar entre telas, ele cria tudo igual como se tivesse criado um novo projeto !!
+
+
+
+removendo a actions bar pelo xml
+va na pasta "values" > "themes" > "theme.xml" e altere esse codigo:
+<style name="Theme.BancoMR" parent="Theme.AppCompat.Light.DarkActionBar"> o padrão é assim
+<style name="Theme.BancoMR" parent="Theme.AppCompat.Light.NoActionBar"> assim é sem a action bar
+porém cuidado, retirando pelo xml ele tira de todas as telas !!
+
+removendo a actions bar pelo código
+pelo código é mais seguro pois voce tira a actions bar somente da tela que voce quiser
+faça como o codigo abaixo:
+
+class Saldo : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_saldo)
+
+        //removendo a actions bar nessa tela de saldo, para podermos colocar a nossa tools bar
+        //com isso ele vai tirar somente dessa tela Saldo
+        //e poderemos criar nossa tools bar para por icone e titulo
+        //a toolsbar vai ser igual a actions bar, porém é nos que vamos cria-la com nossa personalização
+        supportActionBar!!.hide()
+    }
+}
+
+em seguida va até o "activity_saldo.xml" e clique no "split"
+e coloque ela primeiro que os outros components como no exemplo abaixo
+e veja no design como ficou um espaço branco que é a nossa toolbar !!!
+após isso podemos voltar no "Saldo.kt" e fazer as consifurações dela 
+   <Toolbar
+        android:id="@+id/toolbar_saldo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:text="Saldo Disponível"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+        
+        
+  APRENDIZADO:
+  Criar toolbars personalizada (erro do toolbar no ConstraintLayout e corrigindo clicando na lampada) esse erro esta no activity.faturas2.xml,
+  erro sobre SDK,
+  drawable = Imagens e icones,
+  Criar uma nova tela,
+  Criar navegação entre telas,
+  aprendendo mais sobre layout SPLIT - DESIGN
